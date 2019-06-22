@@ -1,0 +1,83 @@
+"""
+The purpose of this code is to perform the game Rock, Paper,
+Scissors, Lizard, Spock as depicted in the TV show The Big
+Bang Theory.
+Course: An Introduction to Interactive Programming in Python
+School: Rice University, through Coursera
+Student: Phillip Kittelson
+Date: 17 June 2019
+"""
+
+# Uses import to generate random input for the computer player
+import random
+
+# Function to convert a number to a string
+def name_to_number(name):
+    number = 0
+    if name == 'rock':
+        number = 0
+    elif name == 'Spock':
+        number = 1
+    elif name == 'paper':
+        number = 2
+    elif name == 'lizard':
+        number = 3
+    elif name == 'scissors':
+        number = 4
+    else:
+        print 'Error'
+    return number
+
+# Function to convert a number to a string
+def number_to_name(number):
+    if number == 0:
+        name = 'rock'
+    elif number == 1:
+        name = 'Spock'
+    elif number == 2:
+        name = 'paper'
+    elif number == 3:
+        name = 'lizard'
+    elif number == 4:
+        name = 'scissors'
+    else:
+        print 'Error'
+    return name
+
+# Play the game
+def rpsls(player_choice): 
+    # Print a blank line to seperate turns
+    print
+    
+    # Print the player's choice
+    print 'The player chose ' + player_choice + '.'
+    
+    # Convert the player's choice to a number
+    player_number = name_to_number(player_choice)
+    
+    # Generate a random choice for the computer
+    comp_number = random.randrange(0,5)
+    
+    # Convert the computer's choice to a name
+    comp_choice = number_to_name(comp_number)
+    
+    # Print the computer's choice using the name
+    print 'The computer chose ' + comp_choice + '.'
+    
+    # Calculate the difference between the choice numbers
+    difference = (player_number - comp_number) %5
+    
+    # Determine who the winner is
+    if difference == 1 or difference == 2:
+        print 'Player wins!'
+    elif difference == 3 or difference == 4:
+        print 'Computer wins!'
+    else:
+        print 'Tie!'
+        
+# Generate five turns, with choices for the player
+rpsls("rock")
+rpsls("Spock")
+rpsls("paper")
+rpsls("lizard")
+rpsls("scissors")
