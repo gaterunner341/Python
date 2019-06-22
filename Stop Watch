@@ -1,0 +1,68 @@
+""""
+The purpose of this code is to act as a stop watch.  Works
+on http://www.codeskulptor.org.
+Course: An Introduction to Interactive Programming in Python
+School: Rice University, through Coursera
+Student: Phillip Kittelson
+Date: 22 June 2019
+"""
+
+import simplegui
+
+# define global variables
+counter = 0
+interval = 100
+width = 300
+height = 300
+pos = [125, 150]
+pos1 = [0, 150]
+
+# define helper function format that converts time
+# in tenths of seconds into formatted string A:BC.D
+def format(t):
+    min = str((t / 10) / 60)
+    tens_sec = str(((t // 10) % 60) // 10)
+    ones_sec = str(((t // 10) % 60) % 10)
+    mili = str(t % 10)
+    
+    # A:BC.D
+    return min + ":" + tens_sec + ones_sec + "." + mili
+
+def reflex(score):
+    pass
+
+# define event handlers for buttons; "Start", "Stop", "Reset"
+def start():
+    timer.start()
+
+def stop():
+    timer.stop()
+    
+def restart():
+    global counter
+    counter = 0
+
+# define event handler for timer with 0.1 sec interval
+def timer_handler():
+    global counter
+    counter += 1
+    # print counter
+
+# define draw handler
+def draw(canvas):
+    global counter
+    canvas.draw_text(format(counter), pos, 36, "White")
+    
+# create frame
+frame = simplegui.create_frame("Stop Watch", width, height)
+timer = simplegui.create_timer(interval, timer_handler)
+
+# register event handlers
+frame.set_draw_handler(draw)
+
+start = frame.add_button("Start", start, 100)
+stop = frame.add_button("Stop", stop, 100)
+restart = frame.add_button("Restart", restart, 100)
+
+# start frame
+frame.start()
